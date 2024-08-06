@@ -5,7 +5,14 @@
 #include "value.h"
 
 typedef enum {
+    // Binary operations
+    OP_ADD,
+    OP_SUBTRACT,
+    OP_MULTIPLY,
+    OP_DIVIDE,
+
     OP_CONSTANT,
+    OP_NEGATE,  // <-- Negazione
     OP_RETURN,  // <-- Istruzione per ritornare da una funzione.
 } OpCode;
 
