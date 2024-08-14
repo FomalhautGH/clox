@@ -156,9 +156,11 @@ static InterpretResult run() {
 void initVM() {
     vm.objects = NULL;
     resetStack();
+    initTable(&vm.strings);
 }
 
 void freeVM() {
+    freeTable(&vm.strings);
     freeObjects();
 }
 

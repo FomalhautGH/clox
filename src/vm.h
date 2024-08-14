@@ -2,6 +2,7 @@
 #define clox_vm_h
 
 #include "chunk.h"
+#include "table.h"
 #include "value.h"
 
 #define STACK_MAX 256
@@ -13,6 +14,8 @@ typedef struct {
 
     Value stack[STACK_MAX]; // <-- Stack per tenere conto dei valori.
     Value* stackTop; // <-- Puntatore al primo elemento libero della stack. (Il Top)
+
+    Table strings;
 
     Obj* objects; // Linked list di tutti gli oggetti per poterli deallocare senza memory leaks.
 } VM;
