@@ -16,6 +16,7 @@ typedef struct {
     Value* stackTop; // <-- Puntatore al primo elemento libero della stack. (Il Top)
 
     Table strings;
+    Table globals;
 
     Obj* objects; // Linked list di tutti gli oggetti per poterli deallocare senza memory leaks.
 } VM;

@@ -23,8 +23,14 @@ typedef enum {
     OP_NOT,
 
     OP_CONSTANT,
-    OP_NEGATE,  // <-- Negazione
+    OP_NEGATE,  // <-- Negazione.
+
+    OP_POP, // <-- Poppa valore dallo stack dei valori.
+    OP_PRINT, // <-- Stampa.
     OP_RETURN,  // <-- Istruzione per ritornare da una funzione.
+    OP_GET_GLOBAL, // <-- Ottenere variabile globale.
+    OP_SET_GLOBAL, // <-- Settare variabile globale.
+    OP_DEFINE_GLOBAL // <-- Dichiara variabile globale.
 } OpCode;
 
 // Array dinamico per le istruzioni.
