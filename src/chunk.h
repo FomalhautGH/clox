@@ -34,6 +34,11 @@ typedef enum {
     OP_GET_LOCAL, // <-- Ottenere variabile locale.
     OP_SET_LOCAL, // <-- Settare variabile locale.
 
+    // Control Flow.
+    OP_JUMP_IF_FALSE,
+    OP_JUMP,    
+    OP_LOOP,
+
     OP_DEFINE_GLOBAL // <-- Dichiara variabile globale.
 } OpCode;
 

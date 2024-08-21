@@ -56,6 +56,7 @@ static InterpretResult run() {
     #define READ_BYTE() (*vm.ip++) // <-- Macro che ritorna il puntatore alla istruzione corrente e lo consuma.
     #define READ_CONSTANT() (vm.chunk->constants.values[READ_BYTE()])
     #define READ_STRING() AS_STRING(READ_CONSTANT())
+    #define READ_SHORT() (vm.ip += 2, (uint16_t)((vm.ip[-2] << 8) | vm.ip[-1]))
 
     // Macro per operazioni binarie, il do_while serve per fare in modo che gli statements
     // siano tutti nello stesso scope onde evitare problemi.
@@ -190,6 +191,24 @@ static InterpretResult run() {
                 break;
             }
 
+            case OP_JUMP: {
+                uint16_t offset = READ_SHORT();
+                vm.ip += offset;
+                break;
+            }
+
+            case OP_JUMP_IF_FALSE: {
+                uint16_t offset = READ_SHORT();
+                if (isFalsey(peek(0))) vm.ip += offset;
+                break;
+            }
+
+            case OP_LOOP: {
+                uint16_t offset = READ_SHORT();
+                vm.ip -= offset;
+                break;
+            }
+
             case OP_PRINT: {
                 printValue(pop());
                 printf("\n");
@@ -200,6 +219,7 @@ static InterpretResult run() {
 
     #undef BINARY_OP
     #undef READ_BYTE
+    #undef READ_SHORT
     #undef READ_STRING
     #undef READ_CONSTANT
 }
